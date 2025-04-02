@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="3.0">
+
+    <!-- Настройки базы данных -->
+    <context-param>
+        <param-name>jdbcUrl</param-name>
+        <param-value>jdbc:postgresql://localhost:5432/library</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>jdbcUser</param-name>
+        <param-value>postgres</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>jdbcPassword</param-name>
+        <param-value>postgres</param-value>
+    </context-param>
+
+</web-app>
