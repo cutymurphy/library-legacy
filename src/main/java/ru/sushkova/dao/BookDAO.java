@@ -83,7 +83,7 @@ public class BookDAO {
             rs.getString("title"),
             rs.getString("author"),
             rs.getInt("year"),
-            (Integer) rs.getObject("person_id") // может быть NULL
+            (Integer) rs.getObject("person_id")
         );
     }
 
