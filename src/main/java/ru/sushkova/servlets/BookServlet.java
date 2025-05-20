@@ -4,18 +4,24 @@ import ru.sushkova.dao.BookDAO;
 import ru.sushkova.dao.PersonDAO;
 import ru.sushkova.models.Book;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/books/*")
 public class BookServlet extends HttpServlet {
-    private final BookDAO bookDAO = new BookDAO();
-    private final PersonDAO personDAO = new PersonDAO();
+    private BookDAO bookDAO;
+    private PersonDAO personDAO;
+
+    @Override
+    public void init() {
+        this.bookDAO = (BookDAO) getServletContext().getAttribute("bookDAO");
+        this.personDAO = (PersonDAO) getServletContext().getAttribute("personDAO");
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

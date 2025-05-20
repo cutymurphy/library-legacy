@@ -3,17 +3,22 @@ package ru.sushkova.servlets;
 import ru.sushkova.dao.PersonDAO;
 import ru.sushkova.models.Person;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/people/*")
 public class PersonServlet extends HttpServlet {
-    private final PersonDAO personDAO = new PersonDAO();
+    private PersonDAO personDAO;
+
+    @Override
+    public void init() {
+        this.personDAO = (PersonDAO) getServletContext().getAttribute("personDAO");
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
